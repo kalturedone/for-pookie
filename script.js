@@ -77,16 +77,7 @@ function setRealChoice(choice, next) {
 
 function handleNo() {
     if (window.navigator.vibrate) window.navigator.vibrate(100);
-    
-    const alertBox = document.getElementById('custom-alert');
-    if (alertBox) {
-        alertBox.classList.add('active');
-        
-        // Hide it automatically after 2 seconds
-        setTimeout(() => {
-            alertBox.classList.remove('active');
-        }, 2000);
-    }
+    alert("This button is strictly for decorative purposes.");
 }
 // 4. VISUAL EFFECTS
 function createHearts() {
