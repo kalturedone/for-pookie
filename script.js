@@ -77,11 +77,6 @@ function setRealChoice(choice, next) {
 
 function handleNo() {
     if (window.navigator.vibrate) window.navigator.vibrate(100);
-    alert("This button is strictly for decorative purposes.");
-}
-
-function handleNo() {
-    if (window.navigator.vibrate) window.navigator.vibrate(100);
     
     const alertBox = document.getElementById('custom-alert');
     if (alertBox) {
