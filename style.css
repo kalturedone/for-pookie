@@ -6,12 +6,20 @@
     -webkit-touch-callout: none; /* Prevents long-press menu on mobile */
 }
 
+
 :root {
     --cherry: #ff003c;
     --dark: #050505;
 }
 
-* { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+* { 
+    -webkit-tap-highlight-color: transparent; 
+    box-sizing: border-box; 
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
 
 body {
     background-color: var(--dark);
@@ -119,4 +127,16 @@ body {
     font-size: 15vw;
     color: white;
     text-shadow: 0 0 20px var(--cherry);
+}
+
+.shake {
+    animation: shake-animation 0.5s ease;
+}
+
+@keyframes shake-animation {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px) rotate(-1deg); }
+    50% { transform: translateX(5px) rotate(1deg); }
+    75% { transform: translateX(-5px) rotate(-1deg); }
+    100% { transform: translateX(0); }
 }
