@@ -59,7 +59,7 @@
         }
 
         .page {
-            display: none; /* Hidden by default */
+            display: none; 
             height: 100dvh;
             padding: 2.5rem;
             flex-direction: column;
@@ -146,7 +146,7 @@
     <!-- PAGE 1: THE HOOK -->
     <div id="page1" class="page active">
         <div class="img-container">
-            <!-- Ensure your image is inside a folder named 'public' -->
+            <!-- Asset path handling -->
             <img src="public/pookie.jpg" alt="Pookie" onerror="this.src='https://images.unsplash.com/photo-1518196775741-20111d12f719?q=80&w=1000&auto=format&fit=crop'">
         </div>
         <h2 class="text-xs tracking-[0.5em] mb-4 text-[#ff003c] font-black">2026 EXCLUSIVE</h2>
@@ -293,7 +293,7 @@
         let bgMusic, rizzSound, goodGirlSound;
         let isStarted = false;
 
-        // Path to your public folder
+        // Force 'public/' prefix for assets
         const ASSET_PATH = "public/";
 
         function startExperience() {
@@ -302,7 +302,7 @@
             
             document.getElementById('start-btn').innerText = "Entering...";
 
-            // Initialize Audio with the public folder path
+            // Initialize Audio
             bgMusic = new Audio(ASSET_PATH + "background.mp3");
             bgMusic.loop = true;
             bgMusic.volume = 0.4;
@@ -311,24 +311,28 @@
             goodGirlSound = new Audio(ASSET_PATH + "goodgirl.mp3");
 
             // Attempt play
-            bgMusic.play().catch(e => console.log("Music blocked by browser policy"));
+            bgMusic.play().catch(e => console.log("Audio blocked: click required"));
             
             goToPage(2);
-            goodGirlSound.play().catch(e => console.log("Audio file missing in public/"));
+            goodGirlSound.play().catch(e => console.log("File goodgirl.mp3 not found in /public"));
 
             setTimeout(() => goToPage(3), 2200);
         }
 
         function goToPage(pageNum) {
             const pages = document.querySelectorAll('.page');
-            pages.forEach(p => p.classList.remove('active'));
+            pages.forEach(p => {
+                p.classList.remove('active');
+                p.style.display = 'none'; // Ensure total hidden
+            });
             
             const target = document.getElementById('page' + pageNum);
             if (target) {
-                target.classList.add('active');
+                target.style.display = 'flex';
+                // Small timeout to trigger CSS animation
+                setTimeout(() => target.classList.add('active'), 10);
             }
 
-            // Automatic transition for the "About You" splash
             if (pageNum === 4) {
                 setTimeout(() => goToPage(5), 1800);
             }
@@ -361,13 +365,15 @@
         }
 
         function handleNo() {
-            alert("This button is strictly for decoration.");
+            alert("Error: This button is disabled for your safety.");
         }
 
         function createHearts() {
             const container = document.getElementById('heart-container');
             if (!container) return;
-            for (let i = 0; i < 20; i++) {
+            // Clean out old hearts if any
+            container.innerHTML = '';
+            for (let i = 0; i < 25; i++) {
                 const heart = document.createElement('div');
                 heart.className = 'heart';
                 heart.innerHTML = '❤️';
@@ -379,14 +385,20 @@
             }
         }
 
-        // Run setup on load
-        window.addEventListener('DOMContentLoaded', () => {
+        // Initialize safely
+        function init() {
             createHearts();
             // Force first page visibility
-            document.getElementById('page1').style.display = 'flex';
-        });
+            const p1 = document.getElementById('page1');
+            if (p1) {
+                p1.style.display = 'flex';
+                p1.classList.add('active');
+            }
+        }
 
-        // Prevent double-tap zoom on mobile
+        window.onload = init;
+
+        // Prevent double-tap zoom
         document.addEventListener('touchstart', (e) => {
             if (e.touches.length > 1) e.preventDefault();
         }, { passive: false });
