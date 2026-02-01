@@ -1,3 +1,11 @@
+/* Disable text selection and blue highlights on tap */
+* {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and 11 */
+    user-select: none; /* Standard syntax */
+    -webkit-touch-callout: none; /* Prevents long-press menu on mobile */
+}
+
 :root {
     --cherry: #ff003c;
     --dark: #050505;
