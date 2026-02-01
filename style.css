@@ -120,3 +120,8 @@ body {
     color: white;
     text-shadow: 0 0 20px var(--cherry);
 }
+
+#custom-alert.active {
+    display: block;
+    animation: pageIn 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
