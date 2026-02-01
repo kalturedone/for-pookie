@@ -80,10 +80,19 @@ function handleNo() {
     alert("This button is strictly for decorative purposes.");
 }
 
-function autoNext(next) {
-    setTimeout(() => goToPage(next), 400);
+function handleNo() {
+    if (window.navigator.vibrate) window.navigator.vibrate(100);
+    
+    const alertBox = document.getElementById('custom-alert');
+    if (alertBox) {
+        alertBox.classList.add('active');
+        
+        // Hide it automatically after 2 seconds
+        setTimeout(() => {
+            alertBox.classList.remove('active');
+        }, 2000);
+    }
 }
-
 // 4. VISUAL EFFECTS
 function createHearts() {
     const container = document.getElementById('heart-container');
