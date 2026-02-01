@@ -78,7 +78,8 @@ function createHearts() {
         heart.innerHTML = '❤️';
         heart.style.left = Math.random() * 100 + 'vw';
         heart.style.animationDuration = (Math.random() * 4 + 3) + 's';
-        heart.appendChild(container); // Fix for appending
+        heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+        heart.style.animationDelay = Math.random() * 5 + 's';
         container.appendChild(heart);
     }
 }
