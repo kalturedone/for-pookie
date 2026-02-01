@@ -108,3 +108,15 @@ window.onload = createHearts;
 document.addEventListener('touchmove', (e) => { 
     if(e.touches.length > 1) e.preventDefault(); 
 }, { passive: false });
+
+function makeFullScreen() {
+    const doc = window.document;
+    const docEl = doc.documentElement;
+
+    const requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+
+    if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+        requestFullScreen.call(docEl);
+    }
+}
+
