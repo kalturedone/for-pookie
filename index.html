@@ -17,14 +17,14 @@
 
     <div id="page1" class="page active">
         <div class="img-container">
-            <img src="pookie.jpg" alt="Romance" onclick="makeFullScreen()">
+            <img id="pookie-img" src="https://images.unsplash.com/photo-1518196775741-20111d12f719?q=80&w=1000&auto=format&fit=crop" alt="Romance" onclick="toggleFullScreen()">
         </div>
         <h2 class="text-xs tracking-[0.5em] mb-4 text-[#ff003c] font-black">2026 EXCLUSIVE</h2>
         <h1 class="heavy text-7xl mb-4">Hey<br>Pookie.</h1>
         <p class="text-lg leading-tight mb-8">
             I thought you looked very <span class="serif-italic">cute</span>. So I made you something special.
         </p>
-        <button id="start-btn" onclick="startExperience()" class="btn-main">Open it 💘</button>
+        <button id="start-btn" onclick="startExperience()" class="btn-main">Open it</button>
     </div>
 
     <div id="page2" class="page !items-center !text-center !p-0">
@@ -46,115 +46,58 @@
 
     <div id="page5" class="page">
         <h1 class="heavy text-4xl mb-10">How would your<br>friends describe you?</h1>
-        <div class="option-tile" onclick="autoNext(6)">
-            <span>A Sweetheart</span>
-            <span>❤️</span>
-        </div>
-        <div class="option-tile" onclick="autoNext(6)">
-            <span>Total Trouble</span>
-            <span>🔥</span>
-        </div>
-        <div class="option-tile" onclick="autoNext(6)">
-            <span>The Main Character</span>
-            <span>✨</span>
-        </div>
+        <div class="option-tile" onclick="autoNext(6)"><span>A Sweetheart</span><span>❤️</span></div>
+        <div class="option-tile" onclick="autoNext(6)"><span>Total Trouble</span><span>🔥</span></div>
+        <div class="option-tile" onclick="autoNext(6)"><span>The Main Character</span><span>✨</span></div>
     </div>
 
     <div id="page6" class="page">
         <h1 class="heavy text-5xl mb-10">Wait...<br>Do you think<br>I'm cute?</h1>
-        <div class="option-tile" onclick="playRizzThenNext(8)">
-            <span>Yes, obviously</span>
-        </div>
-        <div class="option-tile" onclick="playRizzThenNext(8)">
-            <span>Maybe a little</span>
-        </div>
-        <div class="option-tile" onclick="autoNext(7)">
-            <span>Ask me again later</span>
-        </div>
+        <div class="option-tile" onclick="playRizzThenNext(8)"><span>Yes, obviously</span></div>
+        <div class="option-tile" onclick="playRizzThenNext(8)"><span>Maybe a little</span></div>
+        <div class="option-tile" onclick="autoNext(7)"><span>Ask me again later</span></div>
     </div>
 
     <div id="page7" class="page">
         <h1 class="heavy text-4xl mb-6 text-[#ff003c]">Nice try...</h1>
-        <p class="text-2xl mb-10 leading-tight">
-            "Later" isn't an option. I don't move on until you admit the truth.
-        </p>
-        <div class="option-tile" onclick="playRizzThenNext(8)">
-            <span>Fine, you're cute.</span>
-        </div>
-        <div class="option-tile" onclick="playRizzThenNext(8)">
-            <span>Okay, you're VERY cute.</span>
-        </div>
+        <p class="text-2xl mb-10 leading-tight">"Later" isn't an option. I don't move on until you admit the truth.</p>
+        <div class="option-tile" onclick="playRizzThenNext(8)"><span>Fine, you're cute.</span></div>
+        <div class="option-tile" onclick="playRizzThenNext(8)"><span>Okay, you're VERY cute.</span></div>
     </div>
 
     <div id="page8" class="page">
         <h1 class="heavy text-4xl mb-4 leading-none text-[#ff003c]">Choose your<br>kinda date:</h1>
-        <p class="mb-8 opacity-60 font-bold uppercase tracking-widest text-xs">Let's see how you roll...</p>
-        <div class="option-tile" onclick="setChaoticChoice('Robbing a bank', 9)">
-            <span>Robbing a bank</span>
-        </div>
-        <div class="option-tile" onclick="setChaoticChoice('Stalking our exes', 9)">
-            <span>Stalking someone</span>
-        </div>
-        <div class="option-tile" onclick="setChaoticChoice('Dine and Dashing', 9)">
-            <span>Dine and Dashing</span>
-        </div>
+        <div class="option-tile" onclick="setChaoticChoice('Robbing a bank', 9)"><span>Robbing a bank</span></div>
+        <div class="option-tile" onclick="setChaoticChoice('Stalking our exes', 9)"><span>Stalking someone</span></div>
+        <div class="option-tile" onclick="setChaoticChoice('Dine and Dashing', 9)"><span>Dine and Dashing</span></div>
     </div>
 
     <div id="page9" class="page !items-center !text-center">
         <h1 class="heavy text-6xl mb-4 text-[#ff003c]">DAMNNNN...</h1>
-        <p class="text-2xl mb-8 leading-tight">
-            You're actually crazy for choosing <br>
-            <span id="crazy-choice-display" class="serif-italic text-3xl">that</span>.
-        </p>
-        <p class="opacity-50 text-sm uppercase font-bold tracking-[0.2em] mb-10">I lowkey like it though.</p>
+        <p class="text-2xl mb-8 leading-tight">You're actually crazy for choosing <br><span id="crazy-choice-display" class="serif-italic text-3xl">that</span>.</p>
         <button onclick="goToPage(10)" class="btn-main">But seriously...</button>
     </div>
 
     <div id="page10" class="page">
         <h1 class="heavy text-4xl mb-4 leading-none text-[#ff003c]">What are we<br>ACTUALLY doing?</h1>
-        <p class="mb-8 opacity-60 font-bold uppercase tracking-widest text-xs">Pick a vibe:</p>
-        <div class="option-tile" onclick="setRealChoice('Street food & Standup', 11)">
-            <span>Street Food & Standup</span>
-        </div>
-        <div class="option-tile" onclick="setRealChoice('Sunset & Arcades', 11)">
-            <span>Arcade & Sunset</span>
-        </div>
-        <div class="option-tile" onclick="setRealChoice('Live Jazz & Drinks', 11)">
-            <span>Deep Talk & Drinks</span>
-        </div>
+        <div class="option-tile" onclick="setRealChoice('Street food & Standup', 11)"><span>Street Food & Standup</span></div>
+        <div class="option-tile" onclick="setRealChoice('Sunset & Arcades', 11)"><span>Sunset & Arcades</span></div>
+        <div class="option-tile" onclick="setRealChoice('Live Jazz & Drinks', 11)"><span>Live Jazz & Drinks</span></div>
     </div>
 
     <div id="page11" class="page !items-center !text-center">
         <h1 class="heavy text-5xl mb-4">SO...</h1>
-        <h2 class="serif-italic text-3xl mb-8 leading-tight" id="val-question">Since we're doing that, you might as well be my Valentine?</h2>
+        <h2 class="serif-italic text-3xl mb-8 leading-tight" id="val-question">Will you be my Valentine?</h2>
         <div class="flex gap-4 w-full">
             <button onclick="goToPage(12)" class="btn-main !mt-0 !bg-[#ff003c] !text-white flex-1">Yes</button>
             <button onclick="handleNo()" class="btn-main !mt-0 !bg-transparent border border-white !text-white opacity-50 flex-1">No</button>
         </div>
-        <p class="mt-6 text-[10px] uppercase tracking-widest opacity-30 italic">(Clicking 'No' is literally not allowed)</p>
     </div>
 
-    <div id="page12" class="page">
-        <h1 class="heavy text-4xl mb-6">Last one...</h1>
-        <p class="text-2xl mb-10 leading-tight">
-            Be honest. Was this the best move anyone's pulled on you <span class="text-[#ff003c]">this year?</span>
-        </p>
-        <div class="option-tile" onclick="autoNext(13)"><span>Yes, hands down.</span></div>
-        <div class="option-tile" onclick="autoNext(13)"><span>I'm impressed.</span></div>
-    </div>
+    <div id="page12" class="page"><h1 class="heavy text-4xl mb-6">Last one...</h1><p class="text-2xl mb-10 leading-tight">Was this the best move anyone's pulled on you <span class="text-[#ff003c]">this year?</span></p><div class="option-tile" onclick="autoNext(13)"><span>Yes, hands down.</span></div><div class="option-tile" onclick="autoNext(13)"><span>I'm impressed.</span></div></div>
 
-    <div id="page13" class="page !items-center !text-center">
-        <h1 class="heavy text-6xl mb-6">YOU'RE<br>MINE.</h1>
-        <p class="text-gray-400 mb-8 text-lg">
-            Glad we cleared that up. You've officially been recruited for the 14th. 
-        </p>
-        
-        <div class="w-full bg-[#ff003c] text-white p-12 transform -rotate-2 shadow-[0_0_80px_rgba(255,0,60,0.5)] flex flex-col items-center">
-            <span class="text-6xl mb-4">🔒</span>
-            <h2 class="heavy text-4xl tracking-tighter">APPLICATION ACCEPTED.</h2>
-        </div>
-        
-        <p class="mt-12 text-sm italic text-[#ff003c] font-black opacity-60 italic">Check your phone. I'm already typing.</p>
-    </div>
+    <div id="page13" class="page !items-center !text-center"><h1 class="heavy text-6xl mb-6">YOU'RE<br>MINE.</h1><div class="w-full bg-[#ff003c] text-white p-12 transform -rotate-2 flex flex-col items-center"><span class="text-6xl mb-4">🔒</span><h2 class="heavy text-4xl tracking-tighter">APPLICATION ACCEPTED.</h2></div><p class="mt-12 text-sm italic text-[#ff003c] font-black italic">Check your phone. I'm already typing.</p></div>
+
+    <script src="script.js"></script>
 </body>
 </html>
