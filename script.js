@@ -52,7 +52,18 @@ let isExperienceStarted = false;
             setTimeout(() => goToPage(8), 2500);
         }
 
+        function playRizz() {
+            rizzSound.currentTime = 0; 
+            rizzSound.play().catch(e => console.log("Rizz blocked"));
+        }
+
+        function handleValentineYes() {
+            playRizz();
+            goToPage(12);
+        }
+
         function handleBestMoveResponse() {
+            playRizz();
             goToPage('page-final-splash');
             setTimeout(() => goToPage(13), 2000);
         }
