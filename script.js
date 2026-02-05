@@ -46,6 +46,8 @@ let isExperienceStarted = false;
         }
 
         function handleCuteResponse() {
+            rizzSound.currentTime = 0; 
+            rizzSound.play().catch(e => console.log("Rizz blocked"));
             goToPage('page-cute-splash');
             setTimeout(() => goToPage(8), 2500);
         }
@@ -53,12 +55,6 @@ let isExperienceStarted = false;
         function handleBestMoveResponse() {
             goToPage('page-final-splash');
             setTimeout(() => goToPage(13), 2000);
-        }
-
-        function playRizzThenNext(nextPage) {
-            rizzSound.currentTime = 0; 
-            rizzSound.play().catch(e => console.log("Rizz blocked"));
-            autoNext(nextPage);
         }
 
         function setChaoticChoice(choice, next) {
