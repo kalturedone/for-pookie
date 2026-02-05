@@ -45,6 +45,12 @@ let isExperienceStarted = false;
             setTimeout(() => goToPage(6), 2000);
         }
 
+        function playRizzThenNext(nextPage) {
+            rizzSound.currentTime = 0; 
+            rizzSound.play().catch(e => console.log("Rizz blocked"));
+            autoNext(nextPage);
+        }
+
         function handleCuteResponse() {
             goToPage('page-cute-splash');
             setTimeout(() => goToPage(8), 2500);
