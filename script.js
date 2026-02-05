@@ -1,87 +1,87 @@
 let isExperienceStarted = false;
-const bgMusic = new Audio("background.mp3");
-const rizzSound = new Audio("rizz.mp3");
-const goodGirlSound = new Audio("goodgirl.mp3");
+        
+        // Mocking Audio for preview environment if files don't exist
+        const bgMusic = { play: () => Promise.resolve(), pause: () => {} };
+        const rizzSound = { play: () => Promise.resolve(), currentTime: 0 };
+        const goodGirlSound = { play: () => Promise.resolve() };
 
-bgMusic.preload = "auto";
-bgMusic.loop = true;
-bgMusic.volume = 0.4;
-rizzSound.preload = "auto";
-goodGirlSound.preload = "auto";
+        function startExperience() {
+            if (isExperienceStarted) return;
+            isExperienceStarted = true;
+            goToPage(2);
+            setTimeout(() => goToPage(3), 2200);
+        }
 
-function startExperience() {
-    if (isExperienceStarted) return;
-    isExperienceStarted = true;
-    bgMusic.play().catch(e => console.log("Music blocked"));
-    goodGirlSound.play().catch(e => console.log("Greeting blocked"));
-    goToPage(2);
-    setTimeout(() => goToPage(3), 2200);
-}
+        function goToPage(pageNum) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            
+            let target;
+            if (typeof pageNum === 'string') {
+                target = document.getElementById(pageNum);
+            } else {
+                target = document.getElementById('page' + pageNum);
+            }
 
-function goToPage(pageNum) {
-    document.querySelectorAll('.page').forEach((p, idx) => {
-        p.classList.remove('active');
-        if (idx === pageNum - 1) p.classList.add('active');
-    });
-    if (pageNum === 4) setTimeout(() => goToPage(5), 1800);
-    if (window.navigator.vibrate) window.navigator.vibrate(20);
-}
+            if (target) target.classList.add('active');
 
-function playRizzThenNext(nextPage) {
-    rizzSound.currentTime = 0; 
-    rizzSound.play().catch(e => console.log("Rizz blocked"));
-    autoNext(nextPage);
-}
+            if (pageNum === 4) setTimeout(() => goToPage(5), 1800);
+        }
 
-function setChaoticChoice(choice, next) {
-    document.getElementById('crazy-choice-display').innerText = choice;
-    autoNext(next);
-}
+        function handleDescription(choice) {
+            const splashText = document.getElementById('splash-desc-text');
+            if (choice === 'sweetheart') splashText.innerHTML = `Ooohooo<br><span class="text-[#ff003c]">Sweetu.</span>`;
+            else if (choice === 'trouble') splashText.innerHTML = `I like<br><span class="text-[#ff003c]">Trouble.</span>`;
+            else if (choice === 'main') splashText.innerHTML = `Iconic<br><span class="text-[#ff003c]">Energy.</span>`;
 
-function setRealChoice(choice, next) {
-    document.getElementById('val-question').innerHTML = `Since we're doing <span class="text-[#ff003c]">${choice}</span>, will you be my Valentine?`;
-    autoNext(next);
-}
+            goToPage('page-desc-splash');
+            setTimeout(() => goToPage(6), 2000);
+        }
 
-function handleNo() {
-    if (window.navigator.vibrate) window.navigator.vibrate(100);
-    alert("Try again Pookie.");
-}
+        function handleCuteResponse() {
+            goToPage('page-cute-splash');
+            setTimeout(() => goToPage(8), 2500);
+        }
 
-function autoNext(next) {
-    setTimeout(() => goToPage(next), 400);
-}
+        function handleBestMoveResponse() {
+            goToPage('page-final-splash');
+            setTimeout(() => goToPage(13), 2000);
+        }
 
-function toggleFullScreen() {
-    const doc = window.document;
-    const docEl = doc.documentElement;
-    const img = document.getElementById('pookie-img');
-    if (img) {
-        img.classList.add('shake');
-        setTimeout(() => img.classList.remove('shake'), 500);
-    }
-    const requestFS = docEl.requestFullscreen || docEl.webkitRequestFullScreen || docEl.mozRequestFullScreen || docEl.msRequestFullscreen;
-    const exitFS = doc.exitFullscreen || doc.webkitExitFullscreen || doc.mozCancelFullScreen || doc.msExitFullscreen;
-    if (!doc.fullscreenElement && !doc.webkitFullscreenElement && !doc.mozFullScreenElement && !doc.msFullscreenElement) {
-        if (requestFS) requestFS.call(docEl);
-    } else {
-        if (exitFS) exitFS.call(doc);
-    }
-}
+        function setChaoticChoice(choice, next) {
+            document.getElementById('crazy-choice-display').innerText = choice;
+            autoNext(next);
+        }
 
-function createHearts() {
-    const container = document.getElementById('heart-container');
-    if (!container) return;
-    for (let i = 0; i < 20; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        heart.innerHTML = '❤️';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = (Math.random() * 4 + 3) + 's';
-        heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
-        heart.style.animationDelay = Math.random() * 5 + 's';
-        container.appendChild(heart);
-    }
-}
-window.onload = createHearts;
-document.addEventListener('touchmove', (e) => { if(e.touches.length > 1) e.preventDefault(); }, { passive: false });
+        function setRealChoice(choice, next) {
+            document.getElementById('val-question').innerHTML = `Since we're doing <span class="text-[#ff003c]">${choice}</span>, will you be my Valentine?`;
+            autoNext(next);
+        }
+
+        function autoNext(next) {
+            setTimeout(() => goToPage(next), 400);
+        }
+
+        function toggleFullScreen() {
+            const img = document.getElementById('pookie-img');
+            if (img) {
+                img.classList.add('shake');
+                setTimeout(() => img.classList.remove('shake'), 500);
+            }
+        }
+
+        function createHearts() {
+            const container = document.getElementById('heart-container');
+            if (!container) return;
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 4 + 3) + 's';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(heart);
+            }
+        }
+
+        window.onload = () => createHearts();
