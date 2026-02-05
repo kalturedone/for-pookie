@@ -5,6 +5,12 @@ let isExperienceStarted = false;
         const rizzSound = new Audio("rizz.mp3");
         const goodGirlSound = new Audio("goodgirl.mp3");
 
+        bgMusic.preload = "auto";
+        bgMusic.loop = true;
+        bgMusic.volume = 0.4;
+        rizzSound.preload = "auto";
+        goodGirlSound.preload = "auto";
+
         function startExperience() {
             if (isExperienceStarted) return;
             isExperienceStarted = true;
