@@ -14,6 +14,8 @@ let isExperienceStarted = false;
         function startExperience() {
             if (isExperienceStarted) return;
             isExperienceStarted = true;
+            bgMusic.play().catch(e => console.log("Music blocked"));
+            goodGirlSound.play().catch(e => console.log("Greeting blocked"));
             goToPage(2);
             setTimeout(() => goToPage(3), 2200);
         }
