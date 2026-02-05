@@ -1,9 +1,9 @@
 let isExperienceStarted = false;
         
         // Mocking Audio for preview environment if files don't exist
-        const bgMusic = { play: () => Promise.resolve(), pause: () => {} };
-        const rizzSound = { play: () => Promise.resolve(), currentTime: 0 };
-        const goodGirlSound = { play: () => Promise.resolve() };
+        const bgMusic = new Audio("background.mp3");
+        const rizzSound = new Audio("rizz.mp3");
+        const goodGirlSound = new Audio("goodgirl.mp3");
 
         function startExperience() {
             if (isExperienceStarted) return;
