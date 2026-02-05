@@ -15,9 +15,10 @@
 
     <div id="heart-container"></div>
 
+    <!-- Page 1: Landing -->
     <div id="page1" class="page active">
         <div class="img-container">
-            <img id="pookie-img" src="pookie.jpg" alt="Romance" onclick="toggleFullScreen()">
+            <img id="pookie-img" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=1000&auto=format&fit=crop" alt="Romance" onclick="toggleFullScreen()">
         </div>
         <h2 class="text-xs tracking-[0.5em] mb-4 text-[#ff003c] font-black">2026 EXCLUSIVE</h2>
         <h1 class="heavy text-7xl mb-4">Hey<br>Pookie.</h1>
@@ -27,10 +28,12 @@
         <button id="start-btn" onclick="startExperience()" class="btn-main">Open it</button>
     </div>
 
+    <!-- Page 2: Flash Greeting -->
     <div id="page2" class="page !items-center !text-center !p-0">
         <h1 class="heavy flash-text">GOOD<br><span class="text-[#ff003c]">GIRL.</span></h1>
     </div>
 
+    <!-- Page 3: The Intro -->
     <div id="page3" class="page">
         <h1 class="heavy text-5xl mb-6 leading-tight">Let's skip<br>the BS.</h1>
         <p class="text-gray-300 mb-8 leading-tight text-lg">
@@ -40,31 +43,46 @@
         <button onclick="goToPage(4)" class="btn-main">And then what?</button>
     </div>
 
+    <!-- Page 4: Flash transition -->
     <div id="page4" class="page !items-center !text-center !p-0">
         <h1 class="heavy flash-text">SO TELL ME<br><span class="text-[#ff003c]">ABOUT YOU.</span></h1>
     </div>
 
+    <!-- Page 5: Description Selection -->
     <div id="page5" class="page">
         <h1 class="heavy text-4xl mb-10">How would your<br>friends describe you?</h1>
-        <div class="option-tile" onclick="autoNext(6)"><span>A Sweetheart</span><span>❤️</span></div>
-        <div class="option-tile" onclick="autoNext(6)"><span>Total Trouble</span><span>🔥</span></div>
-        <div class="option-tile" onclick="autoNext(6)"><span>The Main Character</span><span>✨</span></div>
+        <div class="option-tile" onclick="handleDescription('sweetheart')"><span>A Sweetheart</span><span>❤️</span></div>
+        <div class="option-tile" onclick="handleDescription('trouble')"><span>Total Trouble</span><span>🔥</span></div>
+        <div class="option-tile" onclick="handleDescription('main')"><span>The Main Character</span><span>✨</span></div>
     </div>
 
+    <!-- Splash Page (Intermediate - Description) -->
+    <div id="page-desc-splash" class="page !items-center !text-center !p-0">
+        <h1 class="heavy flash-text" id="splash-desc-text">Ooohooo<br><span class="text-[#ff003c]">Sweetu.</span></h1>
+    </div>
+
+    <!-- Page 6: The "Cute" Question -->
     <div id="page6" class="page">
         <h1 class="heavy text-5xl mb-10">Wait...<br>Do you think<br>I'm cute?</h1>
-        <div class="option-tile" onclick="playRizzThenNext(8)"><span>Yes, obviously</span></div>
-        <div class="option-tile" onclick="playRizzThenNext(8)"><span>Maybe a little</span></div>
+        <div class="option-tile" onclick="handleCuteResponse()"><span>Yes, obviously</span></div>
+        <div class="option-tile" onclick="handleCuteResponse()"><span>Maybe a little</span></div>
         <div class="option-tile" onclick="autoNext(7)"><span>Ask me again later</span></div>
     </div>
 
+    <!-- Page 7: Re-asking -->
     <div id="page7" class="page">
         <h1 class="heavy text-4xl mb-6 text-[#ff003c]">Nice try...</h1>
         <p class="text-2xl mb-10 leading-tight">"Later" isn't an option. I don't move on until you admit the truth.</p>
-        <div class="option-tile" onclick="playRizzThenNext(8)"><span>Fine, you're cute.</span></div>
-        <div class="option-tile" onclick="playRizzThenNext(8)"><span>Okay, you're VERY cute.</span></div>
+        <div class="option-tile" onclick="handleCuteResponse()"><span>Fine, you're cute.</span></div>
+        <div class="option-tile" onclick="handleCuteResponse()"><span>Okay, you're VERY cute.</span></div>
     </div>
 
+    <!-- Splash Page (Intermediate - Cute Response) -->
+    <div id="page-cute-splash" class="page !items-center !text-center !p-0 px-6">
+        <h1 class="heavy flash-text !text-[8vw]">I KNEW IT.<br><span class="text-[#ff003c] text-[6vw]">God took his time to make me.</span></h1>
+    </div>
+
+    <!-- Page 8: Chaotic Date -->
     <div id="page8" class="page">
         <h1 class="heavy text-4xl mb-4 leading-none text-[#ff003c]">Choose your<br>kinda date:</h1>
         <div class="option-tile" onclick="setChaoticChoice('Robbing a bank', 9)"><span>Robbing a bank</span></div>
@@ -72,31 +90,54 @@
         <div class="option-tile" onclick="setChaoticChoice('Dine and Dashing', 9)"><span>Dine and Dashing</span></div>
     </div>
 
+    <!-- Page 9: React to Chaotic -->
     <div id="page9" class="page !items-center !text-center">
         <h1 class="heavy text-6xl mb-4 text-[#ff003c]">DAMNNNN...</h1>
         <p class="text-2xl mb-8 leading-tight">You're actually crazy for choosing <br><span id="crazy-choice-display" class="serif-italic text-3xl">that</span>.</p>
         <button onclick="goToPage(10)" class="btn-main">But seriously...</button>
     </div>
 
+    <!-- Page 10: Real Date -->
     <div id="page10" class="page">
         <h1 class="heavy text-4xl mb-4 leading-none text-[#ff003c]">What are we<br>ACTUALLY doing?</h1>
-        <div class="option-tile" onclick="setRealChoice('Street food & Standup', 11)"><span>Street Food & Standup</span></div>
+        <div class="option-tile" onclick="setRealChoice('Street Food & Standup', 11)"><span>Street Food & Standup</span></div>
         <div class="option-tile" onclick="setRealChoice('Sunset & Arcades', 11)"><span>Sunset & Arcades</span></div>
-        <div class="option-tile" onclick="setRealChoice('Live Jazz & Drinks', 11)"><span>Netflix and Chill</span></div>
+        <div class="option-tile" onclick="setRealChoice('Netflix and Chill', 11)"><span>Netflix and Chill</span></div>
     </div>
 
+    <!-- Page 11: The Big Question -->
     <div id="page11" class="page !items-center !text-center">
         <h1 class="heavy text-5xl mb-4">SO...</h1>
         <h2 class="serif-italic text-3xl mb-8 leading-tight" id="val-question">Will you be my Valentine?</h2>
-        <div class="flex gap-4 w-full">
-            <button onclick="goToPage(12)" class="btn-main !mt-0 !bg-[#ff003c] !text-white flex-1">Yes</button>
-            <button onclick="handleNo()" class="btn-main !mt-0 !bg-transparent border border-white !text-white opacity-50 flex-1">No</button>
+        <div class="flex flex-col gap-4 w-full">
+            <button onclick="goToPage(12)" class="btn-main !mt-0 !bg-[#ff003c] !text-white w-full">Yes</button>
+            <button class="btn-main !mt-0 !bg-transparent border border-white !text-white opacity-20 w-full cursor-not-allowed">No</button>
+            <p class="text-[10px] uppercase tracking-widest opacity-40 mt-2">Note: pressing No is not an option</p>
         </div>
     </div>
 
-    <div id="page12" class="page"><h1 class="heavy text-4xl mb-6">Last one...</h1><p class="text-2xl mb-10 leading-tight">Was this the best move anyone's pulled on you <span class="text-[#ff003c]">this year?</span></p><div class="option-tile" onclick="autoNext(13)"><span>Yes, hands down.</span></div><div class="option-tile" onclick="autoNext(13)"><span>I'm impressed.</span></div></div>
+    <!-- Page 12: Confirmation -->
+    <div id="page12" class="page">
+        <h1 class="heavy text-4xl mb-6">Last one...</h1>
+        <p class="text-2xl mb-10 leading-tight">Was this the best move anyone's pulled on you <span class="text-[#ff003c]">this year?</span></p>
+        <div class="option-tile" onclick="handleBestMoveResponse()"><span>Yes, hands down.</span></div>
+        <div class="option-tile" onclick="handleBestMoveResponse()"><span>I'm impressed.</span></div>
+    </div>
 
-    <div id="page13" class="page !items-center !text-center"><h1 class="heavy text-6xl mb-6">YOU'RE<br>MINE.</h1><div class="w-full bg-[#ff003c] text-white p-12 transform -rotate-2 flex flex-col items-center"><span class="text-6xl mb-4">🔒</span><h2 class="heavy text-4xl tracking-tighter">APPLICATION ACCEPTED.</h2></div><p class="mt-12 text-sm italic text-[#ff003c] font-black italic">Check your phone. I'm already typing.</p></div>
+    <!-- Splash Page (Intermediate - Final Excitement) -->
+    <div id="page-final-splash" class="page !items-center !text-center !p-0">
+        <h1 class="heavy flash-text">LESSSS<br><span class="text-[#ff003c]">GOOOOOOO</span></h1>
+    </div>
+
+    <!-- Page 13: Final State -->
+    <div id="page13" class="page !items-center !text-center">
+        <h1 class="heavy text-6xl mb-6">YOU'RE<br>MINE.</h1>
+        <div class="w-full bg-[#ff003c] text-white p-12 transform -rotate-2 flex flex-col items-center">
+            <span class="text-6xl mb-4">🔒</span>
+            <h2 class="heavy text-4xl tracking-tighter">APPLICATION ACCEPTED.</h2>
+        </div>
+        <p class="mt-12 text-sm italic text-[#ff003c] font-black italic">Check your phone. I'm already typing.</p>
+    </div>
 
     <script src="script.js"></script>
 </body>
