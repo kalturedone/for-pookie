@@ -75,18 +75,22 @@ let isExperienceStarted = false;
             const doc = window.document;
             const docEl = doc.documentElement;
             const img = document.getElementById('pookie-img');
+            
+            // Add shake effect
             if (img) {
                 img.classList.add('shake');
                 setTimeout(() => img.classList.remove('shake'), 500);
             }
+
+            // Real Fullscreen logic
             const requestFS = docEl.requestFullscreen || docEl.webkitRequestFullScreen || docEl.mozRequestFullScreen || docEl.msRequestFullscreen;
             const exitFS = doc.exitFullscreen || doc.webkitExitFullscreen || doc.mozCancelFullScreen || doc.msExitFullscreen;
+            
             if (!doc.fullscreenElement && !doc.webkitFullscreenElement && !doc.mozFullScreenElement && !doc.msFullscreenElement) {
                 if (requestFS) requestFS.call(docEl);
             } else {
                 if (exitFS) exitFS.call(doc);
             }
-        }
         }
 
         function createHearts() {
