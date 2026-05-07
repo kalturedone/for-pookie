@@ -74,7 +74,7 @@ let isExperienceStarted = false;
         }
 
         function setRealChoice(choice, next) {
-            document.getElementById('val-question').innerHTML = `Since we're doing <span class="text-[#ff003c]">${choice}</span>, will you be my Valentine?`;
+            document.getElementById('val-question').innerHTML = `Are you ready to go out for <span class="text-[#ff003c]">${choice}</span>?`;
             autoNext(next);
         }
 
